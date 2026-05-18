@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Niharika Kavati — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --muted: #6b6b6b;
+    --accent: #1a3a5c;
+    --highlight: #e8f4f0;
+    --teal: #0d9e75;
+    --bg: #f9f7f4;
+    --card: #ffffff;
+    --border: #e2ddd8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(249,247,244,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    max-width: 1100px; margin: 0 auto; width: 100%;
+  }
+  .hero-tag {
+    font-size: 0.78rem; font-weight: 500; color: var(--teal);
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--teal); }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--accent); margin-bottom: 1.5rem;
+  }
+  h1 span { color: var(--teal); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 460px; margin-bottom: 2rem; font-weight: 300;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block; padding: 0.75rem 1.75rem;
+    background: var(--accent); color: #fff;
+    font-size: 0.88rem; font-weight: 500; border-radius: 2px;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block; padding: 0.75rem 1.75rem;
+    border: 1.5px solid var(--accent); color: var(--accent);
+    font-size: 0.88rem; font-weight: 500; border-radius: 2px;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+
+  /* Hero right panel */
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--teal); line-height: 1;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+  .open-badge {
+    background: #e8f7f0; border: 1px solid #9fddc8;
+    color: #0a7a58; border-radius: 20px;
+    padding: 0.5rem 1.2rem; font-size: 0.8rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    align-self: flex-start;
+  }
+  .open-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #0a7a58; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.78rem; font-weight: 500; color: var(--teal);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;
+  }
+  .section-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--teal); }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700; color: var(--accent); margin-bottom: 2.5rem; line-height: 1.2;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); font-weight: 300; margin-bottom: 1rem; }
+  .about-roles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .role-chip {
+    background: var(--highlight); border: 1px solid #b2ddd2;
+    color: var(--teal); font-size: 0.8rem; font-weight: 500;
+    padding: 0.3rem 0.9rem; border-radius: 20px;
+  }
+  .about-info-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.5rem;
+  }
+  .info-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: var(--muted); font-weight: 300; }
+  .info-val { color: var(--accent); font-weight: 500; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .skill-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .skill-name { font-size: 0.95rem; font-weight: 500; color: var(--accent); }
+  .skill-level { font-size: 0.78rem; color: var(--teal); font-weight: 300; }
+  .skill-bar-wrap { height: 3px; background: var(--border); border-radius: 2px; margin-top: 0.5rem; }
+  .skill-bar { height: 3px; background: var(--teal); border-radius: 2px; }
+
+  /* EDUCATION */
+  .edu-timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+  .edu-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 4px 4px 0;
+    padding: 1.5rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
+  }
+  .edu-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--teal);
+    line-height: 1; min-width: 60px;
+  }
+  .edu-degree { font-size: 1rem; font-weight: 500; color: var(--accent); margin-bottom: 0.25rem; }
+  .edu-school { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+  .edu-field { font-size: 0.82rem; color: var(--teal); margin-top: 0.25rem; }
+
+  /* CONTACT */
+  #contact { max-width: 700px; }
+  .contact-card {
+    background: var(--accent); border-radius: 4px;
+    padding: 3rem; color: #fff; text-align: center;
+  }
+  .contact-card h2 { color: #fff; margin-bottom: 0.5rem; }
+  .contact-card p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-weight: 300; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border-radius: 2px;
+    font-size: 0.88rem; font-weight: 500; text-decoration: none;
+    transition: transform 0.15s;
+  }
+  .contact-btn:hover { transform: translateY(-2px); }
+  .contact-btn.email { background: #fff; color: var(--accent); }
+  .contact-btn.linkedin { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 6rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">NK</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-left reveal">
+      <div class="hero-tag">Data Analyst</div>
+      <h1>Niharika<br/><span>Kavati</span></h1>
+      <p class="hero-desc">
+        Entry-level Data Analyst and Data Science student passionate about turning raw data into meaningful insights through Python, SQL, and Power BI.
+      </p>
+      <div class="open-badge">Open to Work</div>
+      <br/><br/>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#skills" class="btn-outline">View Skills</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Tools & Technologies</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">B.Tech</div>
+          <div class="stat-label">Computer Science & Engineering</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Motivated & Ready to Contribute</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">Who I Am</div>
+  <h2>About Me</h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I am a motivated and detail-oriented learner currently pursuing Data Science and Data Analytics. I believe data holds the key to better decisions, and I'm committed to building the skills to unlock it.
+      </p>
+      <p>
+        I am building strong foundations in Python, SQL, Excel, statistics, and data visualization tools like Power BI. I enjoy working with data to find insights, solve problems, and support data-driven decisions.
+      </p>
+      <p>
+        Currently focusing on hands-on practice, real-world datasets, and mini projects to sharpen my analytical skills — and actively looking for entry-level opportunities and internships where I can learn, contribute, and grow.
+      </p>
+      <div class="about-roles">
+        <span class="role-chip">Data Analyst</span>
+        <span class="role-chip">Junior Data Analyst</span>
+        <span class="role-chip">Data Science Intern</span>
+      </div>
+    </div>
+    <div class="about-info-card">
+      <div class="info-row">
+        <span class="info-label">Location</span>
+        <span class="info-val">Andhra Pradesh, India</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Degree</span>
+        <span class="info-val">B.Tech (CSE)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Focus</span>
+        <span class="info-val">Data Science & Analytics</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Email</span>
+        <span class="info-val" style="font-size:0.78rem">kavatineharika1245@gmail.com</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Status</span>
+        <span class="info-val" style="color:#0a7a58">✦ Open to Work</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">What I Know</div>
+  <h2>Skills & Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-level">Data Analysis & Scripting</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL</div>
+      <div class="skill-level">Database Querying & DBA</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Power BI</div>
+      <div class="skill-level">Dashboards & Visualization</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📗</div>
+      <div class="skill-name">Excel</div>
+      <div class="skill-level">Data Cleaning & Analysis</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📈</div>
+      <div class="skill-name">Statistics</div>
+      <div class="skill-level">Descriptive & Inferential</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-name">Problem Solving</div>
+      <div class="skill-level">Real-time Data Challenges</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-tag">Academic Background</div>
+  <h2>Education</h2>
+  <div class="edu-timeline reveal">
+    <div class="edu-item">
+      <div class="edu-year">2022</div>
+      <div>
+        <div class="edu-degree">Bachelor of Technology</div>
+        <div class="edu-school">Dhanekula Institute of Engineering & Technology</div>
+        <div class="edu-field">Computer Science & Engineering</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">—</div>
+      <div>
+        <div class="edu-degree">Bachelor of Technology</div>
+        <div class="edu-school">Dhanekula Solutions Private Limited</div>
+        <div class="edu-field">Computational Science</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">—</div>
+      <div>
+        <div class="edu-degree">High School Diploma</div>
+        <div class="edu-school">Sri Chaitanya Junior College</div>
+        <div class="edu-field">Science Stream</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:800px; margin: 0 auto; padding: 6rem 3rem;">
+  <div class="contact-card reveal">
+    <h2>Let's Connect</h2>
+    <p>I'm actively looking for entry-level data analyst or intern roles. If you have an opportunity or just want to say hi, reach out!</p>
+    <div class="contact-links">
+      <a href="mailto:kavatineharika1245@gmail.com" class="contact-btn email">
+        ✉ Email Me
+      </a>
+      <a href="https://www.linkedin.com/in/niharikakavati-94126728a" target="_blank" class="contact-btn linkedin">
+        LinkedIn Profile ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Niharika Kavati · Built with care
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
